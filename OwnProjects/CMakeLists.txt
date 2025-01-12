@@ -1,0 +1,6 @@
+add_subdirectory( Project_00 )
+add_subdirectory( Project_01 )
+add_subdirectory( Project_02 )
+add_subdirectory( Project_03 )
+add_subdirectory( Project_99 )
+add_subdirectory( Project_101 )
