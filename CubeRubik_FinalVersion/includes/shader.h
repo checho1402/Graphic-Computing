@@ -1,0 +1,37 @@
+
+
+///------------------------Vertex-Shader------------------------///
+const char* vertexShaderSource = "#version 330 core\n"
+                                 "layout (location = 0) in vec3 aPos;\n"
+                                 "layout (location = 1) in vec3 aColor;\n"
+                                 "layout (location = 2) in vec2 aTexCoord;\n"
+                                 "layout (location = 3) in vec3 aNormal;\n"
+                                 "out vec3 Color;\n"
+                                 "out vec2 TexCoord;\n"
+                                 "out vec3 FragPos;\n"
+                                 "out vec3 Normal;\n"
+                                 "uniform mat4 model;\n"
+                                 "uniform mat4 view;\n"
+                                 "uniform mat4 projection;\n"
+                                 "void main()\n"
+                                 "{\n"
+                                 "	FragPos = vec3(model * vec4(aPos,1.0));\n"
+                                 "	Normal = mat3(transpose(inverse(model))) * aNormal;\n"
+                                 "   gl_Position = projection * view * model * vec4(aPos, 1.0f);\n"
+                                 "	Color = aColor;\n"
+                                 "	TexCoord = vec2(aTexCoord.x, aTexCoord.y);\n"
+                                 "}\n\0";
+///------------------------Fragment-Shader------------------------///
+const char* fragmentShaderSource = "#version 330 core\n"
+                                   "in vec3 Color;\n"
+                                   "in vec2 TexCoord;\n"
+                                   "in vec3 FragPos;\n"
+                                   "in vec3 Normal;\n"
+                                   "out vec4 fragColor;\n"
+                                   "uniform sampler2D texture1;\n"
+                                   "uniform vec3 viewPos;\n"
+                                   "void main(void)\n"
+                                   "{\n"
+                                   "	vec3 result = Color;\n"
+                                   "   fragColor = texture(texture1, TexCoord) * vec4(result, 1.0f);\n"
+                                   "}\n\0";
